@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eline\\source\\repos\\Histocity_Website\\Histocity_Website\\Histocity_Website.csproj": {}
+    "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\Histocity_Website.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eline\\source\\repos\\Histocity_Website\\Histocity_Website\\Histocity_Website.csproj": {
+    "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\Histocity_Website.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eline\\source\\repos\\Histocity_Website\\Histocity_Website\\Histocity_Website.csproj",
+        "projectUniqueName": "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\Histocity_Website.csproj",
         "projectName": "Histocity_Website",
-        "projectPath": "C:\\Users\\eline\\source\\repos\\Histocity_Website\\Histocity_Website\\Histocity_Website.csproj",
+        "projectPath": "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\Histocity_Website.csproj",
         "packagesPath": "C:\\Users\\eline\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eline\\source\\repos\\Histocity_Website\\Histocity_Website\\obj\\",
+        "outputPath": "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

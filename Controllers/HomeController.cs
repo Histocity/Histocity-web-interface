@@ -10,6 +10,7 @@ namespace Histocity_Website.Controllers
     {
         public IActionResult Index()
         {
+
             return View();
         }
     }

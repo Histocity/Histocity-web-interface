@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NgPkQsRF20GwbENsXpobGdOEkQimbaUw6xFxd9cL1UVKmgR5pq/0GhlwxKPi2QQVPNp3MTNFAncHQCM9Xxoevg==",
+  "dgSpecHash": "jsRpxMI3uOnyiqStMzcvz+BZvlHJCO9zNQOhWfD7qnExLhP2JLUn/vZBOCfe9mH38qgMDfXH/jwDgLUEfL3mAQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\eline\\source\\repos\\Histocity_Website\\Histocity_Website\\Histocity_Website.csproj",
+  "projectFilePath": "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\Histocity_Website.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\eline\\.nuget\\packages\\bouncycastle.netcore\\1.8.3\\bouncycastle.netcore.1.8.3.nupkg.sha512",
     "C:\\Users\\eline\\.nuget\\packages\\google.protobuf\\3.11.4\\google.protobuf.3.11.4.nupkg.sha512",
