@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using Histocity_Website.Models;
-using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Linq;
+using Histocity_Website.Controllers;
 
 namespace Histocity_Website.Controllers
 {
@@ -15,6 +14,7 @@ namespace Histocity_Website.Controllers
 
         public IActionResult Question()
         {
+            
             connection.Open();
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = "select * from questions";
@@ -33,22 +33,30 @@ namespace Histocity_Website.Controllers
 
                 model.Add(question);
             }
-            reader.Close();
+            reader.Close();;
+
+            var categoryCtrl = new CategoryController();
+            ViewBag.Categories = categoryCtrl.GetListItemsOfCategory();
+
+            var eraCtrl = new EraController();
+            ViewBag.Era = eraCtrl.GetListItemsOfEra();
 
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Question(string questionText, string goodAnswerText, string badAnswerText1, string badAnswerText2)
+        public IActionResult Question(string questionText, string goodAnswerText, string badAnswerText1, string badAnswerText2, string CategoryID, string EraID)
         {
             // add question to db
             connection.Open();
             MySqlCommand comm = connection.CreateCommand();
-            comm.CommandText = "INSERT INTO questions(QuestionText, GoodAnswer, WrongAnswer1, WrongAnswer2) VALUES(@questionText, @GoodAnswer, @WrongAnswer1, @WrongAnswer2 )";
-            comm.Parameters.AddWithValue("@questionText", questionText);
+            comm.CommandText = "INSERT INTO questions(QuestionText, GoodAnswer, WrongAnswer1, WrongAnswer2, CategoryID, EraID) VALUES(@QuestionText, @GoodAnswer, @WrongAnswer1, @WrongAnswer2, @Category, @Era)";
+            comm.Parameters.AddWithValue("@QuestionText", questionText);
             comm.Parameters.AddWithValue("@GoodAnswer", goodAnswerText);
             comm.Parameters.AddWithValue("@WrongAnswer1", badAnswerText1);
             comm.Parameters.AddWithValue("@WrongAnswer2", badAnswerText2);
+            comm.Parameters.AddWithValue("@Category", CategoryID);
+            comm.Parameters.AddWithValue("@Era", EraID);
             comm.ExecuteNonQuery();
 
             connection.Close();
@@ -56,5 +64,6 @@ namespace Histocity_Website.Controllers
 
             return Question();
         }
+
     }
 }

@@ -13,5 +13,7 @@ namespace Histocity_Website.Models
         public string WrongAnswer1 { get; set; }
         public string WrongAnswer2 { get; set; }
         public string CreatedAt { get; set; }
+        public int CategoryID { get; set; }
+        public int EraID { get; set; }
     }
 }
