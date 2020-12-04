@@ -251,7 +251,6 @@ C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Hist
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.TagHelpers.output.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.RazorCoreGenerate.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\Question.cshtml.g.cs
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\_Layout.cshtml.g.cs
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.RazorTargetAssemblyInfo.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.RazorTargetAssemblyInfo.cs
@@ -262,5 +261,5 @@ C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\stat
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.dll
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.pdb
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.genruntimeconfig.cache
-C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Category\Category.cshtml.g.cs
-C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Coupling\Coupling.cshtml.g.cs
+C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\Create.cshtml.g.cs
+C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\List.cshtml.g.cs

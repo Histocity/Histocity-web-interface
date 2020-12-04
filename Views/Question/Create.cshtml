@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Question";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/css/questions.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+</head>
+
+<div class="card">
+    <h2 class="card-title">Vraag toevoegen</h2>
+    <form method="POST">
+
+        <div class="form-group">
+            @Html.DropDownList("eraID", new SelectList(ViewBag.Era, "Text", "Value"), "Kies een tijdperk", new { @class = "form-control custom-select", required = "required" })
+        </div>
+
+        <div class="form-group">
+            <select class="form-control custom-select" name="difficulty" required>
+                <option value="" selected>Kies een niveau</option>
+                <option value="1">Makkelijk</option>
+                <option value="2">Gemiddeld</option>
+                <option value="3">Moeilijk</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="questionText" name="questionText" placeholder="Vul de vraag hierin" required />
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="goodAnswerText" name="goodAnswerText" placeholder="Vul hier het goede antwoord in" required/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="badAnswerText1" name="badAnswerText1" placeholder="Vul hier een fout antwoord in" required/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="badAnswerText2" name="badAnswerText2" placeholder="Vul hier een fout antwoord in" required/>
+        </div>
+
+        <label>Actief maken:</label>
+        <div class="form-group">
+            <div class="custom-control custom-switch">
+                <input name="questionActive" type="checkbox" class="custom-control-input" id="customSwitch1" value="true">
+                <label class="custom-control-label" for="customSwitch1"></label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-dark" type="submit" />
+        </div>
+    </form>
+
+    @if (TempData["Success"] != null)
+    {
+        <p class="alert alert-success" id="successMessage">@TempData["Success"]</p>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <p class="alert alert-danger" id="errorMessage">@TempData["Error"]</p>
+    }
+</div>
+
+
+

@@ -1,0 +1,12 @@
+﻿body {
+}
+
+.card {
+    margin-top: 10%;
+    padding: 50px;
+}
+
+.card-title{
+    text-align:center;
+    margin-bottom: 40px;
+}

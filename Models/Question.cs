@@ -7,13 +7,15 @@ namespace Histocity_Website.Models
 {
     public class Question
     {
-        public int QuestionID { get; set; }
+        public string QuestionID { get; set; }
         public string QuestionText { get; set; }
         public string GoodAnswer{ get; set; }
         public string WrongAnswer1 { get; set; }
         public string WrongAnswer2 { get; set; }
         public string CreatedAt { get; set; }
-        public int CategoryID { get; set; }
-        public int EraID { get; set; }
+        public string EraName { get; set; }
+        public string Difficulty { get; set; }
+        
+        public string ActiveInGame { get; set; }
     }
 }

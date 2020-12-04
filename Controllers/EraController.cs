@@ -21,7 +21,7 @@ namespace Histocity_Website.Controllers
         {
             connection.Open();
             MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "select * from era";
+            command.CommandText = "select * from eras";
             MySqlDataReader reader = command.ExecuteReader();
 
             List<SelectListItem> listItems = new List<SelectListItem>();

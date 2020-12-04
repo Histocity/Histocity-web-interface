@@ -7,23 +7,29 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
+    <link href="/css/site.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm bg-dark" navbar-dark>
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a asp-action="index" asp-controller="home" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-                <a asp-action="question" asp-controller="question" class="nav-link">Vragen</a>
-            </li>
-            <li class="nav-item">
-                <a asp-action="category" asp-controller="category" class="nav-link">Categorieën</a>
-            </li>
-            <li class="nav-item">
-                <a asp-action="coupling" asp-controller="coupling" class="nav-link">Categorie aan tijdperk koppelen</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a asp-action="index" asp-controller="home" class="navbar-brand">Histocity</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a asp-action="" asp-controller="" class="nav-link">Instructies</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="Question" class="nav-link">Vragen toevoegen</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="List" asp-controller="Question" class="nav-link">Vragen overzicht</a>
+                </li>
+            </ul>
+            <a asp-action="" asp-controller="" class="btn btn-light my-2 my-sm-0">Login</a>
+        </div>
     </nav>
     <div class="container">
         @RenderBody()
