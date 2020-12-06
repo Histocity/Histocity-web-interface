@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jsRpxMI3uOnyiqStMzcvz+BZvlHJCO9zNQOhWfD7qnExLhP2JLUn/vZBOCfe9mH38qgMDfXH/jwDgLUEfL3mAQ==",
+  "dgSpecHash": "ijfCyjYhJ2g81+AMBXqXTecC096UdO0KCFg1Lu2c/AHOKYa1PEW3c8fbDFyPnTRCY99nHKOWGKZ2I/K47QH/4w==",
   "success": true,
   "projectFilePath": "C:\\Users\\eline\\source\\repos\\Histocity-web-interface\\Histocity_Website.csproj",
   "expectedPackageFiles": [
@@ -67,6 +67,7 @@
     "C:\\Users\\eline\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\eline\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\eline\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.9\\microsoft.visualstudio.azure.containers.tools.targets.1.10.9.nupkg.sha512",
     "C:\\Users\\eline\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\3.1.4\\microsoft.visualstudio.web.codegeneration.3.1.4.nupkg.sha512",
     "C:\\Users\\eline\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.contracts\\3.1.4\\microsoft.visualstudio.web.codegeneration.contracts.3.1.4.nupkg.sha512",
     "C:\\Users\\eline\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration.core\\3.1.4\\microsoft.visualstudio.web.codegeneration.core.3.1.4.nupkg.sha512",

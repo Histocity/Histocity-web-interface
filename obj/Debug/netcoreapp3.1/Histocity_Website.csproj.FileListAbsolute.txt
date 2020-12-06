@@ -243,8 +243,6 @@ C:\Users\eline\source\repos\Histocity-web-interface\bin\Debug\netcoreapp3.1\runt
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.csprojAssemblyReference.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.AssemblyInfoInputs.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.AssemblyInfo.cs
-C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.csproj.CoreCompileInputs.cache
-C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.RazorAssemblyInfo.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.RazorAssemblyInfo.cs
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.TagHelpers.input.cache
@@ -263,3 +261,5 @@ C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Hist
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.genruntimeconfig.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\Create.cshtml.g.cs
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\List.cshtml.g.cs
+C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.csproj.CoreCompileInputs.cache
+C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.MvcApplicationPartsAssemblyInfo.cache
