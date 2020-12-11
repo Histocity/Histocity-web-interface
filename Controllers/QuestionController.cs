@@ -24,7 +24,7 @@ namespace Histocity_Website.Controllers
             try {
                 using (WebClient wc = new WebClient())
                 {
-                    var json = wc.DownloadString("https://localhost:44374/api/question/all");
+                    var json = wc.DownloadString("https://histocity.herokuapp.com/api/question/all");
 
                     questionList = (List<Question>)JsonConvert.DeserializeObject(json, typeof(List<Question>));
 
@@ -81,7 +81,7 @@ namespace Histocity_Website.Controllers
             {
                 using (WebClient wc = new WebClient())
                 {
-                    var json = wc.DownloadString("https://localhost:44374/api/question/get/" + id);
+                    var json = wc.DownloadString("https://histocity.herokuapp.com/api/question/get/" + id);
 
                     question = (Question)JsonConvert.DeserializeObject(json, typeof(Question));
 
