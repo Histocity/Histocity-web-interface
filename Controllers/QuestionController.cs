@@ -6,48 +6,34 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Linq;
 using Histocity_Website.Controllers;
 using System;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using System.Net;
+using Newtonsoft.Json;
 
 namespace Histocity_Website.Controllers
 {
     public class QuestionController : Controller
-    { 
+    {
+        IEnumerable<Question> questionList;
         MySqlConnection connection = new MySqlConnection("Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546");
 
         public IActionResult List()
         {
-            var model = new List<Question>();
-
-            try
-            {
-                connection.Open();
-                MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT  Questions.QuestionID, Questions.QuestionText, Questions.GoodAnswer, Questions.WrongAnswer1, Questions.WrongAnswer2, Questions.Created, Questions.Difficulty, Questions.ActiveInGame, Eras.EraName From Questions INNER JOIN Eras on Questions.EraID = Eras.EraID; ";
-                MySqlDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
+            try {
+                using (WebClient wc = new WebClient())
                 {
-                    var question = new Question();
-                    question.QuestionID = reader["QuestionID"].ToString();
-                    question.QuestionText = reader["QuestionText"].ToString();
-                    question.GoodAnswer = reader["GoodAnswer"].ToString();
-                    question.WrongAnswer1 = reader["WrongAnswer1"].ToString();
-                    question.WrongAnswer2 = reader["WrongAnswer2"].ToString();
-                    question.CreatedAt = reader["Created"].ToString();
-                    question.EraName = reader["EraName"].ToString();
-                    question.Difficulty = reader["Difficulty"].ToString();
-                    question.ActiveInGame = reader["ActiveInGame"].ToString() == "True" ? "Ja" : "Nee";
-                    
-                     model.Add(question);
+                    var json = wc.DownloadString("https://localhost:44374/api/question/all");
+
+                    questionList = (List<Question>)JsonConvert.DeserializeObject(json, typeof(List<Question>));
+
                 }
-                reader.Close();
-                
+            } catch(Exception e) {
+                questionList = Enumerable.Empty<Question>();
+                ModelState.AddModelError(string.Empty, e.ToString());
             }
-            catch (Exception e)
-            {
-                TempData["Error"] = "Er is iets misgegaan, probeer het opnieuw";
-               
-            }
-            return View(model);
+            return View(questionList);
         }
 
          public IActionResult Create()
@@ -87,27 +73,27 @@ namespace Histocity_Website.Controllers
             return RedirectToAction("Create", "Question");
         }
 
-        [HttpPost]
-        public ActionResult Delete(String QuestionID)
+        public IActionResult Edit(string id)
         {
+            Question question;
+
             try
             {
-                connection.Open();
-                MySqlCommand comm = connection.CreateCommand();
+                using (WebClient wc = new WebClient())
+                {
+                    var json = wc.DownloadString("https://localhost:44374/api/question/get/" + id);
 
-                comm.CommandText = "DELETE FROM Questions WHERE QuestionID = @QuestionID; ";
-                comm.Parameters.AddWithValue("@QuestionID", QuestionID);
-                comm.ExecuteNonQuery();
+                    question = (Question)JsonConvert.DeserializeObject(json, typeof(Question));
 
-                connection.Close();
+                }
             }
             catch (Exception e)
             {
-                TempData["ErrorDelete"] = "Er is iets misgegaan, probeer het later opnieuw";
+                question = null;
+                ModelState.AddModelError(string.Empty, e.ToString());
             }
 
-            return RedirectToAction("List", "Question");
+            return View(question);
         }
-
     }
 }

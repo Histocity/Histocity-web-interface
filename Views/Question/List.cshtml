@@ -1,17 +1,12 @@
 ﻿
-@using Histocity_Website.Models;
-@model List<Question>
+@model IEnumerable<Histocity_Website.Models.Question>
 
 @{
     ViewBag.Title = "Question";
     Layout = "~/Views/_Layout.cshtml";
 }
 
-@if (TempData["Error"] != null)
-{
-    <p class="alert alert-danger" id="errorMessage">@TempData["Error"]</p>
-}
-else if (TempData["DeleteError"] != null)
+@if (TempData["DeleteError"] != null)
 {
     <p class="alert alert-danger" id="deleteError">@TempData["DeleteError"]</p>
 }
@@ -31,31 +26,33 @@ else if (TempData["DeleteError"] != null)
             <th></th>
         </tr>
     </thead>
-    @if (Model.Count > 0)
+
+    @foreach (var question in Model)
     {
-        @foreach (var question in Model)
-        {
-            <tr>
-                <td>@question.CreatedAt</td>
-                <td>@question.EraName</td>
-                <td>@question.QuestionText</td>
-                <td>@question.GoodAnswer</td>
-                <td>@question.WrongAnswer1</td>
-                <td>@question.WrongAnswer2</td>
-                <td>@question.Difficulty</td>
-                <td>@question.ActiveInGame</td>
+<tr>
+    <td>@Html.DisplayFor(questionItem => question.createdAt)</td>
+    <td>@Html.DisplayFor(questionItem => question.eraName)</td>
+    <td>@Html.DisplayFor(questionItem => question.questionText)</td>
+    <td>@Html.DisplayFor(questionItem => question.goodAnswer)</td>
+    <td>@Html.DisplayFor(questionItem => question.wrongAnswer1)</td>
+    <td>@Html.DisplayFor(questionItem => question.wrongAnswer2)</td>
+    <td>@Html.DisplayFor(questionItem => question.difficultyNames[question.difficulty])</td>
+    <td>@Html.DisplayFor(questionItem => question.activeInGame)</td>
 
-                @using (Html.BeginForm("Delete", "Question", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.Hidden("QuestionID", @question.QuestionID)
-                    <td><button type="submit" class="btn btn-danger" value="Delete">Verwijder</button></td>
-                }
+    <td>@Html.ActionLink("Verwijder", "Delete", new { id = question.questionID })</td>
+    <td>@Html.ActionLink("Wijzigen", "Edit", new { id = question.questionID })</td>
 
 
-            </tr>
-        }
+</tr>
+
+        @*<tr>
+            <td>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </td>
+        </tr>*@
+
     }
+
 </table>
 
 @if (TempData["Error"] != null)

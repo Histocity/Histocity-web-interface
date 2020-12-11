@@ -261,5 +261,8 @@ C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Hist
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.genruntimeconfig.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\Create.cshtml.g.cs
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\List.cshtml.g.cs
+C:\Users\eline\source\repos\Histocity-web-interface\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
+C:\Users\eline\source\repos\Histocity-web-interface\bin\Debug\netcoreapp3.1\JObject.dll
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.csproj.CoreCompileInputs.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Question\Edit.cshtml.g.cs

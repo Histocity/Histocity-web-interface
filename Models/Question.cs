@@ -7,14 +7,26 @@ namespace Histocity_Website.Models
 {
     public class Question
     {
-        public string QuestionID { get; set; }
-        public string QuestionText { get; set; }
-        public string GoodAnswer{ get; set; }
-        public string WrongAnswer1 { get; set; }
-        public string WrongAnswer2 { get; set; }
-        public string CreatedAt { get; set; }
-        public string EraName { get; set; }
-        public string Difficulty { get; set; }
-        public string ActiveInGame { get; set; }
+        public string questionID { get; set; }
+        public string questionText { get; set; }
+        public string goodAnswer { get; set; }
+        public string wrongAnswer1 { get; set; }
+        public string wrongAnswer2 { get; set; }
+        public string createdAt { get; set; }
+        public string eraName { get; set; }
+        public string difficulty { get; set; }
+        public string activeInGame { get; set; }
+
+       public Dictionary<string, string> difficultyNames = new Dictionary<string, string>(){
+           {"1", "Makkelijk"},
+           {"2", "Gemiddeld"},
+           {"3", "Moeilijk"}
+            
+        };
+    }
+
+    public class Questions
+    {
+        public List<Question> questions { get; set; }
     }
 }

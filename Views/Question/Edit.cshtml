@@ -1,0 +1,21 @@
+﻿@model Histocity_Website.Models.Question
+
+@{
+    ViewBag.Title = "Question";
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/css/questions.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
+</head>
+
+<div class="card">
+    <h2 class="card-title">Vraag wijzigen</h2>
+
+    <p>De vraag "@Model.questionText" kan hier straks gewijzigd worden.."</p>
+</div>
+
+
+
