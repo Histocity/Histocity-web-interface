@@ -13,6 +13,7 @@ namespace Histocity_Website
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public IConfiguration Configuration { get; private set; }
 
         public Startup(IConfiguration configuration)
@@ -24,6 +25,17 @@ namespace Histocity_Website
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://histocity.herokuapp.com/",
+                                                          "https://developer.cloud.unity3d.com/")
+                                                           .AllowAnyHeader();
+                                  });
+            });
+
             services.AddControllersWithViews();
         }
 
@@ -44,6 +56,8 @@ namespace Histocity_Website
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
