@@ -32,7 +32,9 @@ namespace Histocity_Website
                                   {
                                       builder.WithOrigins("https://histocity.herokuapp.com/",
                                                           "https://developer.cloud.unity3d.com/")
-                                                           .AllowAnyHeader();
+                                                           .AllowAnyHeader()
+                                                           .AllowAnyOrigin()
+                                                           .AllowAnyMethod();
                                   });
             });
 

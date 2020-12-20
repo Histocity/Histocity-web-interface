@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Web;
 using MySql.Data.MySqlClient;
 using Histocity_Website.Controllers;
-using System.Web.Http.Cors;
 
 namespace Histocity_Website.API
 {
@@ -18,7 +17,6 @@ namespace Histocity_Website.API
     {
         MySqlConnection connection = new MySqlConnection(new DatabaseController().getConnectionString());
 
-        [EnableCors(origins: "https://histocity.herokuapp.com/", headers: "*", methods: "*")]
         [HttpGet("all")]
         public ActionResult<List<Question>> GetAll()
         {
@@ -55,6 +53,7 @@ namespace Histocity_Website.API
                 throw e;
 
             }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
             return model.questions;
         }
 
@@ -91,6 +90,7 @@ namespace Histocity_Website.API
                 throw e;
 
             }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
             return question;
         }
 
@@ -131,6 +131,7 @@ namespace Histocity_Website.API
                 throw e;
 
             }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
             return model.questions;
         }
 
@@ -172,6 +173,7 @@ namespace Histocity_Website.API
                 throw e;
 
             }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
             return model.questions;
         }
 
@@ -192,6 +194,7 @@ namespace Histocity_Website.API
             {
                 throw e;
             }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
             return RedirectToAction("List");
         }
     }
