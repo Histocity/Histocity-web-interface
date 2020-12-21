@@ -14,7 +14,65 @@
 <div class="card">
     <h2 class="card-title">Vraag wijzigen</h2>
 
-    <p>De vraag "@Model.questionText" kan hier straks gewijzigd worden.."</p>
+    <form method="POST">
+
+        <div class="form-group">
+            <select class="form-control custom-select" name="eraID" required>
+                <option value="@Model.eraID">@Model.eraName</option>
+                @foreach (var item in ViewBag.Era)
+                {
+                    <option value="@item.Text">@item.Value</option>
+                }
+
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control custom-select" name="difficulty" required>
+                <option class="selected" value="@Model.difficulty" selected>@Model.difficultyNames[Model.difficulty]</option>
+                <option value="1">Makkelijk</option>
+                <option value="2">Gemiddeld</option>
+                <option value="3">Moeilijk</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="questionText" name="questionText" value="@Model.questionText" required />
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="goodAnswerText" name="goodAnswerText" value="@Model.goodAnswer" required />
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="badAnswerText1" name="badAnswerText1" value="@Model.wrongAnswer1" required />
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" type="text" id="badAnswerText2" name="badAnswerText2" value="@Model.wrongAnswer2" required />
+        </div>
+
+        <input class="form-control" type="text" id="questionID" name="questionID" value="@Model.questionID" hidden />
+
+        <label>Actief maken:</label>
+        <div class="form-group">
+            <div class="custom-control custom-switch">
+                @if (Model.activeInGame == "Ja")
+                {
+                    <input name="questionActive" type="checkbox" class="custom-control-input" id="customSwitch1" value="true" checked>
+                }
+                else
+                {
+                    <input name="questionActive" type="checkbox" class="custom-control-input" id="customSwitch1" value="true">
+                }
+                <label class="custom-control-label" for="customSwitch1"></label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-dark" type="submit" />
+        </div>
+    </form>
 </div>
 
 

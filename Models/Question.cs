@@ -14,6 +14,8 @@ namespace Histocity_Website.Models
         public string wrongAnswer2 { get; set; }
         public string createdAt { get; set; }
         public string eraName { get; set; }
+
+        public string eraID;
         public string difficulty { get; set; }
         public string activeInGame { get; set; }
 

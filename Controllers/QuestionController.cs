@@ -86,6 +86,13 @@ namespace Histocity_Website.Controllers
                     question = (Question)JsonConvert.DeserializeObject(json, typeof(Question));
 
                 }
+
+                var eraCtrl = new EraController();
+                var eraList = eraCtrl.GetListItemsOfEra();
+                var idSelectedEra = eraList.Where(x => x.Value == question.eraName).First().Text;
+
+                question.eraID = idSelectedEra;
+                ViewBag.Era = eraList;
             }
             catch (Exception e)
             {
@@ -94,6 +101,37 @@ namespace Histocity_Website.Controllers
             }
 
             return View(question);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(string eraID, int difficulty, string questionText, string goodAnswerText, string badAnswerText1, string badAnswerText2, string questionActive, string questionID)
+        {
+            try
+            {
+                connection.Open();
+                MySqlCommand comm = connection.CreateCommand();
+
+                comm.CommandText = "UPDATE questions SET QuestionText = @QuestionText, GoodAnswer = @GoodAnswer, WrongAnswer1 = @WrongAnswer1, WrongAnswer2 = @WrongAnswer2, EraID = @Era, ActiveInGame = @ActiveInGame, Difficulty = @Difficulty WHERE QuestionID = @QuestionID ";
+                comm.Parameters.AddWithValue("@QuestionText", questionText);
+                comm.Parameters.AddWithValue("@GoodAnswer", goodAnswerText);
+                comm.Parameters.AddWithValue("@WrongAnswer1", badAnswerText1);
+                comm.Parameters.AddWithValue("@WrongAnswer2", badAnswerText2);
+                comm.Parameters.AddWithValue("@Era", eraID);
+                comm.Parameters.AddWithValue("@ActiveInGame", questionActive != null ? true : false);
+                comm.Parameters.AddWithValue("@Difficulty", difficulty);
+                comm.Parameters.AddWithValue("@QuestionID", questionID);
+                comm.ExecuteNonQuery();
+
+                connection.Close();
+                TempData["Success"] = "De vraag is opgeslagen";
+            }
+            catch (Exception e)
+            {
+                TempData["Error"] = "Er is iets misgegaan, probeer het opnieuw";
+            }
+
+            return RedirectToAction("List", "Question");
         }
     }
 }
