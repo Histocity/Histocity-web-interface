@@ -10,33 +10,37 @@ namespace Histocity_Website.Controllers
 {
     public class EraController : Controller
     {
-        MySqlConnection connection = new MySqlConnection("Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546");
-
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public List<SelectListItem> GetListItemsOfEra()
         {
-            connection.Open();
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = "select * from eras";
-            MySqlDataReader reader = command.ExecuteReader();
-
-            List<SelectListItem> listItems = new List<SelectListItem>();
-
-            while (reader.Read())
+            using (MySqlConnection connection = new MySqlConnection("Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546; Pooling=false"))
             {
-                listItems.Add(new SelectListItem
-                {
-                    Text = reader["EraID"].ToString(),
-                    Value = reader["EraName"].ToString(),
-                });
-            }
-            reader.Close(); ;
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "select * from eras";
+                MySqlDataReader reader = command.ExecuteReader();
 
-            return listItems;
+                List<SelectListItem> listItems = new List<SelectListItem>();
+
+                while (reader.Read())
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = reader["EraID"].ToString(),
+                        Value = reader["EraName"].ToString(),
+                    });
+                }
+                reader.Close(); ;
+                command.Dispose();
+                connection.Close();
+
+                return listItems;
+            }
         }
     }
 }

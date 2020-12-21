@@ -17,7 +17,6 @@ namespace Histocity_Website.Controllers
     public class QuestionController : Controller
     {
         IEnumerable<Question> questionList;
-        MySqlConnection connection = new MySqlConnection("Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546");
 
         public IActionResult List()
         {
@@ -49,21 +48,24 @@ namespace Histocity_Website.Controllers
         {
             try
             {
-                connection.Open();
-                MySqlCommand comm = connection.CreateCommand();
+                using (MySqlConnection connection = new MySqlConnection("Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546; Pooling=false"))
+                {
+                    connection.Open();
+                    MySqlCommand comm = connection.CreateCommand();
 
-                comm.CommandText = "INSERT INTO questions(QuestionText, GoodAnswer, WrongAnswer1, WrongAnswer2, EraID, ActiveInGame, Difficulty) VALUES(@QuestionText, @GoodAnswer, @WrongAnswer1, @WrongAnswer2, @Era, @ActiveInGame, @Difficulty)";
-                comm.Parameters.AddWithValue("@QuestionText", questionText);
-                comm.Parameters.AddWithValue("@GoodAnswer", goodAnswerText);
-                comm.Parameters.AddWithValue("@WrongAnswer1", badAnswerText1);
-                comm.Parameters.AddWithValue("@WrongAnswer2", badAnswerText2);
-                comm.Parameters.AddWithValue("@Era", eraID);
-                comm.Parameters.AddWithValue("@ActiveInGame", questionActive != null ? true : false);
-                comm.Parameters.AddWithValue("@difficulty", difficulty);
-                comm.ExecuteNonQuery();
+                    comm.CommandText = "INSERT INTO questions(QuestionText, GoodAnswer, WrongAnswer1, WrongAnswer2, EraID, ActiveInGame, Difficulty) VALUES(@QuestionText, @GoodAnswer, @WrongAnswer1, @WrongAnswer2, @Era, @ActiveInGame, @Difficulty)";
+                    comm.Parameters.AddWithValue("@QuestionText", questionText);
+                    comm.Parameters.AddWithValue("@GoodAnswer", goodAnswerText);
+                    comm.Parameters.AddWithValue("@WrongAnswer1", badAnswerText1);
+                    comm.Parameters.AddWithValue("@WrongAnswer2", badAnswerText2);
+                    comm.Parameters.AddWithValue("@Era", eraID);
+                    comm.Parameters.AddWithValue("@ActiveInGame", questionActive != null ? true : false);
+                    comm.Parameters.AddWithValue("@difficulty", difficulty);
+                    comm.ExecuteNonQuery();
 
-                connection.Close();
-                TempData["Success"] = "De vraag is opgeslagen";
+                    connection.Close();
+                    TempData["Success"] = "De vraag is opgeslagen";
+                }
             }
             catch(Exception e)
             {
@@ -73,6 +75,7 @@ namespace Histocity_Website.Controllers
             return RedirectToAction("Create", "Question");
         }
 
+        [HttpGet]
         public IActionResult Edit(string id)
         {
             Question question;
@@ -109,22 +112,26 @@ namespace Histocity_Website.Controllers
         {
             try
             {
-                connection.Open();
-                MySqlCommand comm = connection.CreateCommand();
+                using (MySqlConnection connection = new MySqlConnection("Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546; Pooling=false"))
+                {
+                    connection.Open();
+                    MySqlCommand comm = connection.CreateCommand();
 
-                comm.CommandText = "UPDATE questions SET QuestionText = @QuestionText, GoodAnswer = @GoodAnswer, WrongAnswer1 = @WrongAnswer1, WrongAnswer2 = @WrongAnswer2, EraID = @Era, ActiveInGame = @ActiveInGame, Difficulty = @Difficulty WHERE QuestionID = @QuestionID ";
-                comm.Parameters.AddWithValue("@QuestionText", questionText);
-                comm.Parameters.AddWithValue("@GoodAnswer", goodAnswerText);
-                comm.Parameters.AddWithValue("@WrongAnswer1", badAnswerText1);
-                comm.Parameters.AddWithValue("@WrongAnswer2", badAnswerText2);
-                comm.Parameters.AddWithValue("@Era", eraID);
-                comm.Parameters.AddWithValue("@ActiveInGame", questionActive != null ? true : false);
-                comm.Parameters.AddWithValue("@Difficulty", difficulty);
-                comm.Parameters.AddWithValue("@QuestionID", questionID);
-                comm.ExecuteNonQuery();
+                    comm.CommandText = "UPDATE questions SET QuestionText = @QuestionText, GoodAnswer = @GoodAnswer, WrongAnswer1 = @WrongAnswer1, WrongAnswer2 = @WrongAnswer2, EraID = @Era, ActiveInGame = @ActiveInGame, Difficulty = @Difficulty WHERE QuestionID = @QuestionID ";
+                    comm.Parameters.AddWithValue("@QuestionText", questionText);
+                    comm.Parameters.AddWithValue("@GoodAnswer", goodAnswerText);
+                    comm.Parameters.AddWithValue("@WrongAnswer1", badAnswerText1);
+                    comm.Parameters.AddWithValue("@WrongAnswer2", badAnswerText2);
+                    comm.Parameters.AddWithValue("@Era", eraID);
+                    comm.Parameters.AddWithValue("@ActiveInGame", questionActive != null ? true : false);
+                    comm.Parameters.AddWithValue("@Difficulty", difficulty);
+                    comm.Parameters.AddWithValue("@QuestionID", questionID);
+                    comm.ExecuteNonQuery();
 
-                connection.Close();
-                TempData["Success"] = "De vraag is opgeslagen";
+                    comm.Dispose();
+                    connection.Close();
+                    TempData["Success"] = "De vraag is opgeslagen";
+                }
             }
             catch (Exception e)
             {

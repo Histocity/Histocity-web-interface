@@ -10,7 +10,7 @@ namespace Histocity_Website.Controllers
     {
         public String getConnectionString()
         {
-            return "Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546";
+            return "Database=heroku_9a1fa21f73d10db;Data Source=eu-cdbr-west-03.cleardb.net;User Id=bcfe6ec0812a08;Password=0f9c4546; Pooling=false";
         }
     }
 }

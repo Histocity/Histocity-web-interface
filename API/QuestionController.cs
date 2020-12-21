@@ -46,6 +46,7 @@ namespace Histocity_Website.API
                     model.questions.Add(question);
                 }
                 reader.Close();
+                connection.Close();
 
             }
             catch (Exception e)
@@ -83,6 +84,7 @@ namespace Histocity_Website.API
                     question.activeInGame = reader["ActiveInGame"].ToString() == "True" ? "Ja" : "Nee";
                 }
                 reader.Close();
+                connection.Close();
 
             }
             catch (Exception e)
@@ -124,6 +126,7 @@ namespace Histocity_Website.API
                     model.questions.Add(question);
                 }
                 reader.Close();
+                connection.Close();
 
             }
             catch (Exception e)
@@ -166,6 +169,7 @@ namespace Histocity_Website.API
                     model.questions.Add(question);
                 }
                 reader.Close();
+                connection.Close();
 
             }
             catch (Exception e)
@@ -190,6 +194,8 @@ namespace Histocity_Website.API
                 comm.ExecuteNonQuery();
 
                 connection.Close();
+                comm.Dispose();
+
             } catch (Exception e)
             {
                 throw e;
