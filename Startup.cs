@@ -38,6 +38,8 @@ namespace Histocity_Website
                                   });
             });
 
+            services.AddSession();
+
             services.AddControllersWithViews();
         }
 
@@ -62,6 +64,8 @@ namespace Histocity_Website
             app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

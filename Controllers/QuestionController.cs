@@ -11,6 +11,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Net;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace Histocity_Website.Controllers
 {
@@ -20,27 +21,48 @@ namespace Histocity_Website.Controllers
 
         public IActionResult List()
         {
-            try {
-                using (WebClient wc = new WebClient())
-                {
-                    var json = wc.DownloadString("https://histocity.herokuapp.com/api/question/all");
-
-                    questionList = (List<Question>)JsonConvert.DeserializeObject(json, typeof(List<Question>));
-
-                }
-            } catch(Exception e) {
-                questionList = Enumerable.Empty<Question>();
-                ModelState.AddModelError(string.Empty, e.ToString());
+            if (HttpContext.Session.GetString("userID") == null)
+            {
+                ViewBag.IsLoggedIn = false;
+                return RedirectToAction("Login", "User");
             }
-            return View(questionList);
+            else
+            {
+                ViewBag.IsLoggedIn = true;
+                try
+                {
+                    using (WebClient wc = new WebClient())
+                    {
+                        var json = wc.DownloadString("https://histocity.herokuapp.com/api/question/all");
+
+                        questionList = (List<Question>)JsonConvert.DeserializeObject(json, typeof(List<Question>));
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    questionList = Enumerable.Empty<Question>();
+                    ModelState.AddModelError(string.Empty, e.ToString());
+                }
+                return View(questionList);
+            }
         }
 
          public IActionResult Create()
         {
-            var eraCtrl = new EraController();
-            ViewBag.Era = eraCtrl.GetListItemsOfEra();
+            if (HttpContext.Session.GetString("userID") == null)
+            {
+                ViewBag.IsLoggedIn = false;
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                ViewBag.IsLoggedIn = true;
+                var eraCtrl = new EraController();
+                ViewBag.Era = eraCtrl.GetListItemsOfEra();
 
-            return View();
+                return View();
+            }
         }
 
         [HttpPost]
@@ -78,32 +100,41 @@ namespace Histocity_Website.Controllers
         [HttpGet]
         public IActionResult Edit(string id)
         {
-            Question question;
-
-            try
+            if (HttpContext.Session.GetString("userID") == null)
             {
-                using (WebClient wc = new WebClient())
+                ViewBag.IsLoggedIn = false;
+                return RedirectToAction("Login", "User");
+            }
+            else
+            {
+                ViewBag.IsLoggedIn = true;
+                Question question;
+
+                try
                 {
-                    var json = wc.DownloadString("https://histocity.herokuapp.com/api/question/get/" + id);
+                    using (WebClient wc = new WebClient())
+                    {
+                        var json = wc.DownloadString("https://histocity.herokuapp.com/api/question/get/" + id);
 
-                    question = (Question)JsonConvert.DeserializeObject(json, typeof(Question));
+                        question = (Question)JsonConvert.DeserializeObject(json, typeof(Question));
 
+                    }
+
+                    var eraCtrl = new EraController();
+                    var eraList = eraCtrl.GetListItemsOfEra();
+                    var idSelectedEra = eraList.Where(x => x.Value == question.eraName).First().Text;
+
+                    question.eraID = idSelectedEra;
+                    ViewBag.Era = eraList;
+                }
+                catch (Exception e)
+                {
+                    question = null;
+                    ModelState.AddModelError(string.Empty, e.ToString());
                 }
 
-                var eraCtrl = new EraController();
-                var eraList = eraCtrl.GetListItemsOfEra();
-                var idSelectedEra = eraList.Where(x => x.Value == question.eraName).First().Text;
-
-                question.eraID = idSelectedEra;
-                ViewBag.Era = eraList;
+                return View(question);
             }
-            catch (Exception e)
-            {
-                question = null;
-                ModelState.AddModelError(string.Empty, e.ToString());
-            }
-
-            return View(question);
         }
 
 

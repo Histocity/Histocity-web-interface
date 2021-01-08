@@ -10,52 +10,51 @@
 {
     <p class="alert alert-danger" id="deleteError">@TempData["DeleteError"]</p>
 }
+    <h1>Vragen overzicht</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Gemaakt op:</th>
+                <th>Tijdperk</th>
+                <th>Vraag</th>
+                <th>Goede antwoord</th>
+                <th>Fout antwoord 1</th>
+                <th>Foute antwoord 2</th>
+                <th>Niveau</th>
+                <th>Actief</th>
+                <th></th>
+            </tr>
+        </thead>
 
-<h1>Vragen overzicht</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Gemaakt op:</th>
-            <th>Tijdperk</th>
-            <th>Vraag</th>
-            <th>Goede antwoord</th>
-            <th>Fout antwoord 1</th>
-            <th>Foute antwoord 2</th>
-            <th>Niveau</th>
-            <th>Actief</th>
-            <th></th>
-        </tr>
-    </thead>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(questionItem => question.createdAt)</td>
+                <td>@Html.DisplayFor(questionItem => question.eraName)</td>
+                <td>@Html.DisplayFor(questionItem => question.questionText)</td>
+                <td>@Html.DisplayFor(questionItem => question.goodAnswer)</td>
+                <td>@Html.DisplayFor(questionItem => question.wrongAnswer1)</td>
+                <td>@Html.DisplayFor(questionItem => question.wrongAnswer2)</td>
+                <td>@Html.DisplayFor(questionItem => question.difficultyNames[question.difficulty])</td>
+                <td>@Html.DisplayFor(questionItem => question.activeInGame)</td>
 
-    @foreach (var question in Model)
+                <td>@Html.ActionLink("Verwijder", "Delete", new { id = question.questionID })</td>
+                <td>@Html.ActionLink("Wijzigen", "Edit", new { id = question.questionID })</td>
+
+
+            </tr>
+
+            @*<tr>
+                    <td>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </td>
+                </tr>*@
+
+        }
+
+    </table>
+
+    @if (TempData["Error"] != null)
     {
-<tr>
-    <td>@Html.DisplayFor(questionItem => question.createdAt)</td>
-    <td>@Html.DisplayFor(questionItem => question.eraName)</td>
-    <td>@Html.DisplayFor(questionItem => question.questionText)</td>
-    <td>@Html.DisplayFor(questionItem => question.goodAnswer)</td>
-    <td>@Html.DisplayFor(questionItem => question.wrongAnswer1)</td>
-    <td>@Html.DisplayFor(questionItem => question.wrongAnswer2)</td>
-    <td>@Html.DisplayFor(questionItem => question.difficultyNames[question.difficulty])</td>
-    <td>@Html.DisplayFor(questionItem => question.activeInGame)</td>
-
-    <td>@Html.ActionLink("Verwijder", "Delete", new { id = question.questionID })</td>
-    <td>@Html.ActionLink("Wijzigen", "Edit", new { id = question.questionID })</td>
-
-
-</tr>
-
-        @*<tr>
-            <td>
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            </td>
-        </tr>*@
-
+        <p class="alert alert-danger" id="errorMessage">@TempData["Error"]</p>
     }
-
-</table>
-
-@if (TempData["Error"] != null)
-{
-    <p class="alert alert-danger" id="errorMessage">@TempData["Error"]</p>
-}

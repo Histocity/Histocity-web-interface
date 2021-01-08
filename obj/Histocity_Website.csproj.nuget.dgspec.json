@@ -69,6 +69,14 @@
               "target": "Package",
               "version": "[12.0.3, )"
             },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.11.7, )"
+            },
+            "Synercoding.FormsAuthentication": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.2, )"
