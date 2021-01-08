@@ -219,9 +219,9 @@ namespace Histocity_Website.Controllers
 
             var link = UriBuilder.ToString().Replace("[", "").Replace("]","");
 
-            var fromEmail = new MailAddress("praktijkopdracht.histocity@gmail.com", "Histocity");
+            var fromEmail = new MailAddress("postmaster@sandbox3d882ccfbdc24aac9e1e604029f66c55.mailgun.org", "Histocity");
             var toEmail = new MailAddress(email);
-            var fromEmailPassword = "Unity2020";
+            var fromEmailPassword = " e8c4648ea03e80a5fd145a6d4fc24b4d-3d0809fb-945b0d21";
             string subject = "Je Histocity-account is succesvol aangemaakt";
 
             string body = "<br/><br/>Uw Histocity docenten-account is succesvol aangemaakt. <br>" +
@@ -230,7 +230,7 @@ namespace Histocity_Website.Controllers
 
             var smtp = new SmtpClient
             {
-                Host = "smtp.gmail.com",
+                Host = "smtp.mailgun.org",
                 Port = 587,
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
