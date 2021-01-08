@@ -19,17 +19,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             @if (@ViewBag.IsLoggedIn != null && @ViewBag.IsLoggedIn)
             {
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a asp-action="" asp-controller="" class="nav-link">Instructies</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="Create" asp-controller="Question" class="nav-link">Vragen toevoegen</a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-action="List" asp-controller="Question" class="nav-link">Vragen overzicht</a>
-                    </li>
-                </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a asp-action="" asp-controller="" class="nav-link">Instructies</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="Create" asp-controller="Question" class="nav-link">Vragen toevoegen</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="List" asp-controller="Question" class="nav-link">Vragen overzicht</a>
+                </li>
+                <li class="nav-item">
+                    <a asp-action="List" asp-controller="Student" class="nav-link">Leerlingen</a>
+                </li>
+            </ul>
                 <a asp-action="Logout" asp-controller="User" class="btn btn-light my-2 my-sm-0">Uitloggen</a>
             }
             else
