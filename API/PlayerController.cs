@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
 using Histocity_Website.Controllers;
 using Histocity_Website.Models;
 using Microsoft.AspNetCore.Http;
@@ -48,6 +50,48 @@ namespace Histocity_Website.API
             }
             Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
             return model;
+        }
+
+        public ActionResult<string> Login(string username, string password)
+        {
+            string result = "";
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM students WHERE Username = @username";
+                command.Parameters.AddWithValue("@username", username);
+                MySqlDataReader reader = command.ExecuteReader();
+
+                if(reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (string.Compare(password, HttpUtility.UrlDecode(reader["password"].ToString())) == 0)
+                        {
+                            result = reader["StudentID"].ToString();
+                        }
+                        else
+                        {
+                            result = "WRONG PASSWORD";
+                        }
+                    }
+                } else
+                {
+                    result = "WRONG USERNAME";
+                }
+            
+                reader.Close();
+                connection.Close();
+
+            }
+            catch (Exception error)
+            {
+                throw error;
+
+            }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
+            return result;
         }
     }
 }
