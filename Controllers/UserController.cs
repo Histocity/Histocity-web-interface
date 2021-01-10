@@ -98,6 +98,7 @@ namespace Histocity_Website.Controllers
         //            connection.Open();
         //            MySqlCommand comm = connection.CreateCommand();
 
+
         //            comm.CommandText = "UPDATE users SET IsEmailVerified = true WHERE ActivationCode = @ActivationCode";
         //            comm.Parameters.AddWithValue("@ActivationCode", id);
         //            comm.ExecuteNonQuery();
