@@ -62,12 +62,13 @@ namespace Histocity_Website.API
                 command.CommandText = "SELECT * FROM students WHERE Username = @username";
                 command.Parameters.AddWithValue("@username", username);
                 MySqlDataReader reader = command.ExecuteReader();
+                var hashedPassword = Crypto.Hash(password);
 
                 if(reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        if (string.Compare(password, HttpUtility.UrlDecode(reader["password"].ToString())) == 0)
+                        if (string.Compare(hashedPassword, reader["password"].ToString()) == 0)
                         {
                             result = reader["StudentID"].ToString();
                         }
