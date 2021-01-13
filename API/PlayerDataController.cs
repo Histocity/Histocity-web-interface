@@ -17,6 +17,7 @@ namespace Histocity_Website.API
     {
         MySqlConnection connection = new MySqlConnection(new DatabaseController().getConnectionString());
 
+        // Histocity
         [HttpGet("get/histocity/{userId}")]
         public ActionResult<string> GetHistocity(string userId)
         {
@@ -66,6 +67,55 @@ namespace Histocity_Website.API
             return "{\"rowsAffected: \" : " + rowsAffected + "}"; 
         }
 
+        // Inventory
+        [HttpGet("get/inventory/{userId}")]
+        public ActionResult<string> GetInventory(string userId)
+        {
+            string result = "";
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "SELECT Inventory FROM students WHERE StudentID = " + userId + ";";
+                MySqlDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    result = reader["Inventory"].ToString();
+                }
+                reader.Close();
+                connection.Close();
+
+            }
+            catch (Exception error)
+            {
+                throw error;
+
+            }
+            Response.Headers.Add("Access-Control-Allow-Origin", "https://histocity.herokuapp.com/");
+            return result;
+        }
+
+        [HttpPost("post/inventory/{userId}")]
+        public string PostInventory(int userId, [FromBody] string inventory)
+        {
+            int rowsAffected = 0;
+            try
+            {
+                connection.Open();
+                MySqlCommand command = connection.CreateCommand();
+                command.CommandText = "UPDATE students SET Inventory = \'" + inventory + "\' WHERE StudentID = " + userId;
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception error)
+            {
+                throw error;
+            }
+
+            // TODO make return type (HttpResult class) -> return OK when 1 row affected, return Error if 0 rows affected and if 2 or more rows affected
+            return "{\"rowsAffected: \" : " + rowsAffected + "}";
+        }
 
     }
 }
