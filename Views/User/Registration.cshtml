@@ -6,49 +6,43 @@
 }
 
 <h1>Account aanmaken</h1>
-@if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+<form method="post">
+    <div class="form-group">
+        <input class="form-control" type="text" id="firstName" name="firstName" placeholder="Voornaam" required />
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Achternaam" required />
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" type="email" id="email" name="email" placeholder="Email" required />
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" type="password" id="password" name="password" placeholder="Wachtwoord" onkeyup="checkConfirmPassword()" required />
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Wachtwoord" onkeyup="checkConfirmPassword()" required />
+    </div>
+    <div class="alert alert-danger" id="passwordError" hidden>
+        <span>Wachtwoorden zijn niet gelijk</span>
+    </div>
+    <div class="form-group">
+        <input id="submitUserButton" class="btn btn-dark" type="submit" />
+    </div>
+</form>
+
+@if (ViewBag.Message != null)
 {
-    if (ViewBag.Message != null)
-    {
-        <div class="alert alert-success">
-            <strong>Succes!</strong><br />@ViewBag.Message
-        </div>
-    }
+    <div class="alert alert-danger">
+        <strong>Error!</strong><br />@ViewBag.Message
+    </div>
 }
-else
-{
-    <form method="post">
-        <div class="form-group">
-            <input class="form-control" type="text" id="firstName" name="firstName" placeholder="Voornaam" required />
-        </div>
-
-        <div class="form-group">
-            <input class="form-control" type="text" id="lastName" name="lastName" placeholder="Achternaam" required />
-        </div>
-
-        <div class="form-group">
-            <input class="form-control" type="email" id="email" name="email" placeholder="Email" required />
-        </div>
-
-        <div class="form-group">
-            <input class="form-control" type="password" id="password" name="password" placeholder="Wachtwoord" onkeyup="checkConfirmPassword()" required />
-        </div>
-
-        <div class="form-group">
-            <input class="form-control" type="password" id="confirmPassword" name="confirmPassword" placeholder="Wachtwoord" onkeyup="checkConfirmPassword()" required />
-        </div>
-        <div class="alert alert-danger"  id="passwordError" hidden>
-            <span>Wachtwoorden zijn niet gelijk</span>
-        </div>
-        <div class="form-group">
-            <input id="submitUserButton" class="btn btn-dark" type="submit" />
-        </div>
-    </form>
-
-    @if (ViewBag.Message != null)
+     @if (ViewBag.ErrorMessage != null)
     {
         <div class="alert alert-danger">
-            <strong>Error!</strong><br />@ViewBag.Message
+            @ViewBag.ErrorMessage
         </div>
-    }
-}
+        }

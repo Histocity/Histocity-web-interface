@@ -18,8 +18,8 @@ namespace Histocity_Website.API
     {
         MySqlConnection connection = new MySqlConnection(new DatabaseController().getConnectionString());
 
-        [HttpGet("all")]
-        public ActionResult<List<Student>> GetAll()
+        [HttpGet("teacherID={id}")]
+        public ActionResult<List<Student>> GetAll(string id)
         {
 
             var model = new List<Student>();
@@ -27,7 +27,8 @@ namespace Histocity_Website.API
             {
                 connection.Open();
                 MySqlCommand command = connection.CreateCommand();
-                command.CommandText = "SELECT FirstName, LastName, Username FROM students;";
+                command.CommandText = "SELECT FirstName, LastName, Username FROM students WHERE TeacherID = @teacherID;";
+                command.Parameters.AddWithValue("@teacherID", id);
                 MySqlDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -63,6 +64,7 @@ namespace Histocity_Website.API
                 command.Parameters.AddWithValue("@username", username);
                 MySqlDataReader reader = command.ExecuteReader();
                 var hashedPassword = Crypto.Hash(password);
+
 
                 if(reader.HasRows)
                 {

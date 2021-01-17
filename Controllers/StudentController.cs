@@ -31,7 +31,7 @@ namespace Histocity_Website.Controllers
                 {
                     using (WebClient wc = new WebClient())
                     {
-                        var json = wc.DownloadString("https://histocity.herokuapp.com/api/player/all");
+                        var json = wc.DownloadString("https://histocity.herokuapp.com/api/player/teacherID=" + HttpContext.Session.GetString("userID"));
 
                         studentList = (List<Student>)JsonConvert.DeserializeObject(json, typeof(List<Student>));
 

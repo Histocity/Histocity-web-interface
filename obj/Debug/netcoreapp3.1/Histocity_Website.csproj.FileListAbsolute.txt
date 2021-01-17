@@ -272,3 +272,4 @@ C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razo
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Student\Add.cshtml.g.cs
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.csproj.CoreCompileInputs.cache
 C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Histocity_Website.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\eline\source\repos\Histocity-web-interface\obj\Debug\netcoreapp3.1\Razor\Views\Instructions\Instructions.cshtml.g.cs

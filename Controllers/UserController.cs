@@ -36,7 +36,7 @@ namespace Histocity_Website.Controllers
             var isExist = IsEmailExist(email);
             if(isExist)
             {
-                ModelState.AddModelError("EmailExist", "Dit emailadres is al in gebruik");
+                ViewBag.ErrorMessage = "Dit emailadres is al in gebruik.";
                 return View();
             }
 
