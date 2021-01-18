@@ -56,6 +56,7 @@ namespace Histocity_Website.API
                 MySqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE students SET Histocity = \'" + histocity + "\' WHERE StudentID = " + userId;
                 rowsAffected = command.ExecuteNonQuery();
+                connection.Close();
 
             }
             catch (Exception error)
@@ -106,6 +107,7 @@ namespace Histocity_Website.API
                 MySqlCommand command = connection.CreateCommand();
                 command.CommandText = "UPDATE students SET Inventory = \'" + inventory + "\' WHERE StudentID = " + userId;
                 rowsAffected = command.ExecuteNonQuery();
+                connection.Close();
 
             }
             catch (Exception error)
